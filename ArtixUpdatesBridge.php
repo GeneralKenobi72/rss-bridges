@@ -16,8 +16,10 @@ class ArtixUpdatesBridge extends BridgeAbstract
                 'title' => 'Choose maintainer',
                 'values' => [
                     'aartoni' => '/aartoni',
+					'arc-d3v' => '/arc-d3v',
                     'artist' => '/artist',
                     'artoo' => '/artoo',
+					'capezotte' => '/capezotte',
                     'corysanin' => '/corysanin',
                     'dovloran' => '/dovloran',
                     'dudemanguy' => '/dudemanguy',
@@ -53,8 +55,8 @@ class ArtixUpdatesBridge extends BridgeAbstract
 			$htmlgitea = getSimpleHTMLDOM($urlgitea, $CACHE_TIMEOUT);
 			$lastcommit = $htmlgitea->find('a[rel="nofollow"]', 1);
 			$action = $pkgaction->find('td', 1);
-			$gitlab = sprintf('https://gitlab.archlinux.org/archlinux/packaging/packages/%s', $pkg->plaintext);
-			$gitea = sprintf('https://gitea.artixlinux.org/packages/%s', $pkg->plaintext);
+			$gitlab = sprintf('https://gitlab.archlinux.org/archlinux/packaging/packages/%s/-/commits/main', $pkg->plaintext);
+			$gitea = sprintf('https://gitea.artixlinux.org/packages/%s/commits/branch/master', $pkg->plaintext);
 			$content1 = sprintf("Package <b>%s</b> needs <b>%sing</b>", $pkg->plaintext, strtolower(substr($action->plaintext, 0, -1)));
 			$content2 = "Some usefult links:";
 			$content3 = sprintf("Arch <b>GitLab</b> repo link: <a href=%s>%s</a>", $gitlab, $gitlab);
