@@ -1,5 +1,8 @@
 # RSS-Bridges
-This repo provides 2 RSS bridges for <a href="https://rss-bridge.org/">RSS-Bridge</a> app.
+<a href="https://github.com/rss-bridge/rss-bridge">RSS-Bridge</a> is a PHP web app for creating RSS feeds
+for websites that don't support them.
+
+This repo provides 3 RSS bridges for <a href="https://rss-bridge.org/">RSS-Bridge</a> app.
 
 * etfblBridge - Bridge that takes announcements from notice board site 
 of <a href="https://efee.etf.unibl.org/oglasi/">Faculty Of Electrical Engineering in Banja Luka</a>. 
