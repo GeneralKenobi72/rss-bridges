@@ -2,7 +2,7 @@
 <a href="https://github.com/rss-bridge/rss-bridge">RSS-Bridge</a> is a PHP web app for creating RSS feeds
 for websites that don't support them.
 
-This repo provides 3 RSS bridges for <a href="https://rss-bridge.org/">RSS-Bridge</a> app.
+This repo provides 4 RSS bridges for <a href="https://rss-bridge.org/">RSS-Bridge</a> app.
 
 * etfblBridge - Bridge that takes announcements from notice board site 
 of <a href="https://efee.etf.unibl.org/oglasi/">Faculty Of Electrical Engineering in Banja Luka</a>. 
@@ -13,3 +13,4 @@ Linux maintainer. Uses <a href="https://checkupdates.artixlinux.org/">checkupdat
 from <a href = "https://telegraf.rs">Telegraf.rs</a>. They provide rss feeds for Novak 
 Đoković, but those feeds don't provide entire text content of the article, but only a 
 small part of the beginning. DjokovicBridge pulls entire text content of the articles.
+* EvroligaBridge.php - Same story as the DjokovicBridge, but Euroleague news.
