@@ -49,21 +49,26 @@ class ArtixUpdatesBridge extends BridgeAbstract
 			$pkg = $pkgaction->find('a', 0);
 			$urlgitea = sprintf('https://gitea.artixlinux.org/packages/%s/commits/branch/master', $pkg->plaintext);
 			$urlarch_packages = sprintf('https://archlinux.org/packages/?q=%s', $pkg->plaintext);
+			$urltwigs = sprintf('https://git.arch.sanin.dev/packages/%s/log/main', $pkg->plaintext);
 			//$htmlarch = getSimpleHTMLDOM($urlarch_packages, $CACHE_TIMEOUT);
 			//$arch_pkg_href = $htmlarch->find('td a', 0);
 			//$arch_link = "https://archlinux.org" . $arch_pkg_href->href;
 			$htmlgitea = getSimpleHTMLDOM($urlgitea, $CACHE_TIMEOUT);
 			$lastcommit = $htmlgitea->find('a[rel="nofollow"]', 1);
 			$action = $pkgaction->find('td', 2);
+			$htmltwigs = getSimpleHTMLDOM($urltwigs, $CACHE_TIMEOUT);
+			$commithash = $htmltwigs->find('a[class="commit-hash"]', 1);
+			$commitdesc = $htmltwigs->find('pre', 1);
 			$gitlab = sprintf('https://gitlab.archlinux.org/archlinux/packaging/packages/%s/-/commits/main', $pkg->plaintext);
 			$gitea = sprintf('https://gitea.artixlinux.org/packages/%s/commits/branch/master', $pkg->plaintext);
 			$content1 = sprintf("Package <b>%s</b> needs <b>%sing</b>", $pkg->plaintext, strtolower(substr($action->plaintext, 0, -1)));
+			$content11 = sprintf("Arch commit message says: <b>%s</b> (commit: <i>%s</i>)", $commitdesc->plaintext, $commithash->plaintext);
 			$content2 = "Some usefult links:";
 			$content3 = sprintf("Arch <b>GitLab</b> repo link: <a href=%s>%s</a>", $gitlab, $gitlab);
 			$content4 = sprintf("Arch <b>Package search</b> link: <a href=%s>%s</a>", $urlarch_packages, $urlarch_packages);
 			$content5 = sprintf("Artix <b>Gitea</b> repo link: <a href=%s>%s</a>", $gitea, $gitea);
 	
-			$content = $content1 . "<br><br>" . $content2 . "<br>" . $content3 . "<br>" . $content4 . "<br>" . $content5;
+			$content = $content1 . "<br><br>" . $content11 . "<br><br>" . $content2 . "<br>" . $content3 . "<br>" . $content4 . "<br>" . $content5;
 			$id = $pkg . $action . $lastcommit->plaintext;
 
 			$this->items[] =  [
