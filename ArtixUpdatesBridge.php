@@ -54,11 +54,11 @@ class ArtixUpdatesBridge extends BridgeAbstract
 			//$arch_pkg_href = $htmlarch->find('td a', 0);
 			//$arch_link = "https://archlinux.org" . $arch_pkg_href->href;
 			$htmlgitea = getSimpleHTMLDOM($urlgitea, $CACHE_TIMEOUT);
-			$lastcommit = $htmlgitea->find('a[rel="nofollow"]', 1);
+			$lastcommit = $htmlgitea->find('a[rel="nofollow"]', 0);
 			$action = $pkgaction->find('td', 2);
 			$htmltwigs = getSimpleHTMLDOM($urltwigs, $CACHE_TIMEOUT);
-			$commithash = $htmltwigs->find('a[class="commit-hash"]', 1);
-			$commitdesc = $htmltwigs->find('pre', 1);
+			$commithash = $htmltwigs->find('a[class="commit-hash"]', 0);
+			$commitdesc = $htmltwigs->find('pre', 0);
 			$gitlab = sprintf('https://gitlab.archlinux.org/archlinux/packaging/packages/%s/-/commits/main', $pkg->plaintext);
 			$gitea = sprintf('https://gitea.artixlinux.org/packages/%s/commits/branch/master', $pkg->plaintext);
 			$content1 = sprintf("Package <b>%s</b> needs <b>%sing</b>", $pkg->plaintext, strtolower(substr($action->plaintext, 0, -1)));
